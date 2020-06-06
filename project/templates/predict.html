@@ -1,0 +1,67 @@
+{% extends "index.html" %}
+{% block tab %} Sentiment Analysis API {% endblock %}
+{% block title %}
+<h1 class="row my-row justify-content-center p-5 mb-0">
+    Summary
+</h1>
+{% endblock %}
+{% block content %}
+
+<div class="container my-container">
+
+    {{ form.hidden_tag() }}
+
+           <div class="row my-row justify-content-center no-margin">
+
+            <div class="col-lg-5 col-sm-12 text-center m-1">
+                <div class="card">
+                  <div class="card-header">
+                    Before
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text">{{ text }}</p>
+                  </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5 col-sm-12 text-center m-1">
+              <div class="card h-100">
+                <div class="card-header">
+                  After
+                </div>
+                <div class="card-body">
+                  <p class="card-text">{{ summary }}</p>
+                </div>
+              </div>
+            </div>
+
+            </div>
+
+            <div class="row my-row m-3 justify-content-center">
+              <div class="card col-lg-3 col-sm-12 border-0">
+                <div class="card-body">
+                  <h5 class="card-title text-center">Sentiment</h5>
+                  <p class="card-text text-center">{{ message }}</p>
+                </div>
+              </div>
+
+              <div class="card col-lg-3 col-sm-12 border-0">
+                <div class="card-body">
+                  <h5 class="card-title text-center">Positivity</h5>
+                  <p class="card-text text-center">{{ positive_index }}</p>
+                </div>
+              </div>
+            </div>
+
+          <div class="row my-row m-4">
+            <div class="col text-center">
+              <a href="{{url_for('home')}}" class="btn btn-info" role="button">Return</a>
+            </div>
+          </div>
+
+
+        </div>
+
+ {% endblock %}
+
+

@@ -1,0 +1,42 @@
+{% extends "index.html" %}
+{% block tab %} Sentiment Analysis API {% endblock %}
+{% block title %}
+<h1 class="row my-row justify-content-center p-5 mb-0">
+    Reset Password
+</h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-container">
+  <form method="POST" action="">
+
+    {{ form.hidden_tag() }}
+
+    <div class="row my-row justify-content-center no-margin">
+      <div class="col-lg-4 col-md-5 form-group">
+        {{ form.email.label(class='form-control-label') }}
+        {% if form.email.errors %}
+          {{ form.email(class='form-control form-control-md is-invalid') }}
+          <div class="invalid-feedback">
+            {% for error in form.email.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.email(class='form-control form-control-md') }}
+        {% endif %}
+      </div>
+    </div>
+
+
+    <div class="row my-row mt-3">
+      <div class="col my-col text-center form-group m-0">
+        {{ form.submit(class="btn btn-info") }}
+      </div>
+    </div>
+  </form>
+</div>
+
+
+{% endblock %}

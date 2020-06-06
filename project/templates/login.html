@@ -1,0 +1,77 @@
+{% extends "index.html" %}
+{% block tab %} Sentiment Analysis API {% endblock %}
+{% block title %}
+<h1 class="row my-row justify-content-center p-5 mb-0">
+    Login
+</h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-container">
+  <form method="POST" action="">
+
+    {{ form.hidden_tag() }}
+
+    <div class="row my-row justify-content-center no-margin">
+      <div class="col-lg-4 col-md-5 form-group">
+        {{ form.email.label(class='form-control-label') }}
+        {% if form.email.errors %}
+          {{ form.email(class='form-control form-control-md is-invalid') }}
+          <div class="invalid-feedback">
+            {% for error in form.email.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.email(class='form-control form-control-md') }}
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="row my-row justify-content-center no-margin">
+      <div class="col-lg-4 col-md-5 form-group">
+        {{ form.password.label(class='form-control-label') }}
+        {% if form.password.errors %}
+          {{ form.password(class='form-control form-control-md is-invalid') }}
+          <div class="invalid-feedback">
+            {% for error in form.password.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.password(class='form-control form-control-md') }}
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="row my-row justify-content-center">
+
+      <div class="col-lg-2 col-md-3 my-col text-center form-check">
+        {{ form.remember(class="form-check-input") }}
+        {{ form.remember.label(class="form-check-label") }}
+      </div>
+
+      <small class="col-lg-2 col-md-3 my-col text-muted mid-align">
+        <a href="{{ url_for('reset_request') }}">Forgot Password?</a>
+      </small>
+
+    </div>
+
+    <div class="row my-row mt-3">
+      <div class="col my-col text-center form-group m-0">
+        {{ form.submit(class="btn btn-info") }}
+      </div>
+    </div>
+  </form>
+
+    <div class="row my-row mt-3 mb-3">
+      <small class="col text-muted text-center">
+        Need An Account? <a href="{{ url_for('register') }}">Sign Up Now</a>
+      </small>
+    </div>
+
+
+</div>
+
+{% endblock %}
