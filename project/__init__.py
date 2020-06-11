@@ -5,16 +5,12 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from project.config import Config
 
-
-app = Flask(__name__)
-app.config.from_object(Config)
-
-bcrypt = Bcrypt(app)
-login_manager = LoginManager(app)
+bcrypt = Bcrypt()
+login_manager = LoginManager()
 login_manager.login_view = 'users.login'
 login_manager.login_message_category = 'info'
-
-mail = Mail(app)
+mail = Mail()
+db = SQLAlchemy()
 
 # ENV = 'dev'
 # if ENV == 'dev':
@@ -27,12 +23,23 @@ mail = Mail(app)
 
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
 
-from project.users.routes import users
-from project.posts.routes import posts
-from project.main.routes import main
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(Config)
 
-app.register_blueprint(users)
-app.register_blueprint(posts)
-app.register_blueprint(main)
+    bcrypt.init_app(app)
+    login_manager.init_app(app)
+    mail.init_app(app)
+    db.init_app(app)
+
+    from project.users.routes import users
+    from project.posts.routes import posts
+    from project.main.routes import main
+    from project.errors.handlers import errors
+    app.register_blueprint(users)
+    app.register_blueprint(posts)
+    app.register_blueprint(main)
+    app.register_blueprint(errors)
+
+    return app
