@@ -1,16 +1,9 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-from project.models import User, Feedback
-
-
-class InputForm(FlaskForm):
-    review = TextAreaField('Review', validators=[DataRequired()], render_kw={
-                           'rows': 5})
-
-    submit = SubmitField('Summarize')
+from flask_login import current_user
+from project.models import User
 
 
 class RegistrationForm(FlaskForm):
